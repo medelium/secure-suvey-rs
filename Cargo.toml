@@ -2,6 +2,11 @@
 name = "secure-survey"
 version = "0.1.0"
 edition = "2021"
+description = "Rust library for performing Paillier encrypted surveys"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/medelium/secure-suvey-rs"
+categories = ["cryptography"]
+keywords = ["cryptography", "encryption", "surveys", "paillier", "homomorphic"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
