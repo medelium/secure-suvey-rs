@@ -38,6 +38,8 @@ mod tests {
         let key_pair = super::KeyPair::new();
         println!("{:?}", key_pair.ek);
         println!("{:?}", key_pair.dk);
+        println!("{}", serde_json::to_string_pretty(&key_pair.ek).unwrap());
+        println!("{}", serde_json::to_string_pretty(&key_pair).unwrap());
     }
 
     #[test]

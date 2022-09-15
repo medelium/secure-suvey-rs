@@ -1,4 +1,5 @@
 use paillier::*;
+pub use paillier::EncodedCiphertext;
 use serde::{Deserialize, Serialize};
 
 pub use keys::{KeyPair, UserEncryptionKey};
@@ -113,7 +114,6 @@ pub fn encrypt_vec_with_keys(nums: &Vec<u64>, eks: &[UserEncryptionKey]) -> Vec<
     ciphers
 }
 
-
 #[cfg(test)]
 mod tests {
     use crate::UserEncryptionKey;
@@ -124,6 +124,7 @@ mod tests {
 
         let initial = 20;
         let encrypted = super::encrypt(&key_pair.ek, initial);
+        println!("{:?}", serde_json::to_string(&encrypted).unwrap());
         let decrypted = super::decrypt(&key_pair.dk, &encrypted);
         assert_eq!(initial, decrypted);
     }
@@ -220,6 +221,7 @@ mod tests {
         }
         let encrypted = super::encrypt_with_keys(20, &user_keys);
         assert_eq!(3, encrypted.len());
+        println!("{:?}", serde_json::to_string(&encrypted).unwrap());
 
         let decrypted = super::decrypt(&key_pairs[0].dk, &encrypted[0].cipher);
         assert_eq!(20, decrypted);
