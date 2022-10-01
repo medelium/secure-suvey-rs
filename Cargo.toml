@@ -5,8 +5,9 @@ edition = "2021"
 description = "Rust library for performing Paillier encrypted surveys"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/medelium/secure-suvey-rs"
-categories = ["cryptography"]
+categories = ["cryptography, homo-morphic encryption"]
 keywords = ["cryptography", "encryption", "surveys", "paillier", "homomorphic"]
+authors = ["Michael Graf <michael.graf3110@gmail.com>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
