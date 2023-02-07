@@ -92,7 +92,6 @@ pub fn encrypt_with_keys(num: u64, eks: &[UserEncryptionKey]) -> Vec<UserCipher>
     ciphers
 }
 
-
 pub fn encrypt_vec_with_json_keys(nums: &Vec<u64>, eks: &[String]) -> Vec<UserVecCipher> {
     let user_keys: Vec<UserEncryptionKey> = eks.
         iter()

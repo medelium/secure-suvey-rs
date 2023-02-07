@@ -2,13 +2,13 @@ use paillier::*;
 use serde::{Deserialize, Serialize};
 use serde_json;
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct UserEncryptionKey {
     pub user_id: String,
     pub decryption_key: EncryptionKey,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct KeyPair {
     pub ek: EncryptionKey,
     pub dk: DecryptionKey,
