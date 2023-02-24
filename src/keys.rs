@@ -1,4 +1,5 @@
 use paillier::*;
+pub use paillier::MinimalEncryptionKey;
 use serde::{Deserialize, Serialize};
 use serde_json;
 

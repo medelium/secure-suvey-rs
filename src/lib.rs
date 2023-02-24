@@ -32,6 +32,14 @@ pub fn encrypt(ek: &EncryptionKey, num: u64) -> EncodedCiphertext<u64> {
     Paillier::encrypt(ek, num)
 }
 
+pub fn encrypt_with_minimal_key(ek: &MinimalEncryptionKey, num: u64) -> EncodedCiphertext<u64> {
+    let full_ek = EncryptionKey {
+        n: ek.n.clone(),
+        nn: ek.n.clone() * ek.n.clone(),
+    };
+    Paillier::encrypt(&full_ek, num)
+}
+
 pub fn encrypt_vec(ek: &EncryptionKey, nums: &Vec<u64>) -> EncodedCiphertext<Vec<u64>> {
     Paillier::encrypt(ek, &*nums.clone())
 }
@@ -115,6 +123,8 @@ pub fn encrypt_vec_with_keys(nums: &Vec<u64>, eks: &[UserEncryptionKey]) -> Vec<
 
 #[cfg(test)]
 mod tests {
+    use paillier::MinimalEncryptionKey;
+
     use crate::UserEncryptionKey;
 
     #[test]
@@ -258,5 +268,17 @@ mod tests {
 
         let decrypted = super::decrypt_vec(&key_pairs[0].dk, &encrypted[0].cipher);
         assert_eq!(vec![20, 30, 40], decrypted);
+    }
+
+    #[test]
+    fn encrypt_with_minimal_key() {
+        let key_pair_1 = super::KeyPair::new();
+
+        let minimal_key = MinimalEncryptionKey {
+            n: key_pair_1.ek.n.clone(),
+        };
+        let encrypted = super::encrypt_with_minimal_key(&minimal_key, 20);
+        let decrypted = super::decrypt(&key_pair_1.dk, &encrypted);
+        assert_eq!(20, decrypted);
     }
 }
